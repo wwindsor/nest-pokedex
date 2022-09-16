@@ -22,52 +22,57 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Ejecutar en desarrollo
 
-## Installation
-
-```bash
-$ npm install
+1. Clonar el repositorio
+2. Ejecutar
+```
+yarn install
+```
+3. Tener Nest CLI instalado
+```
+npm i -g @nestjs/cli
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+4. Levantar la base de datos
+```
+docker-compose up -d
 ```
 
-## Test
+5. Clonar el archivo ```.env.template``` y renombar la copia a ```
+.env```
 
-```bash
-# unit tests
-$ npm run test
+6. Llenar las variables de entorno definidas en el ```.env```
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+7. Ejecutar la aplicación en dev:
+```
+yarn start:dev
 ```
 
-## Support
+8. Reconstruir la base de datos con la semilla
+```
+http://localhost:3000/api/v2/seed
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Stack usado
+* MongoDB
+* Nest
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Production Build
+1. Crear el archivo ```.env.prod```
+2. Llenar las variables de entorno de prod
+3. Crear la nueva imagen
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+
+# Notas
+Heroku redeploy sin cambios:
+```
+git commit --allow-empty -m "Tigger Heroku deploy"
+git push heroku <master|main>
+```
